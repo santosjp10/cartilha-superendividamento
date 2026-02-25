@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cartilha: Entendendo o Superendividamento</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .cartilha-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
+            overflow: hidden;
+        }
+        
+        .pagina {
+            min-height: 100vh;
+            padding: 40px;
+            position: relative;
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .pagina.ativa {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .pagina-1 { background: linear-gradient(180deg, #fff5f5 0%, #ffffff 100%); }
+        .pagina-2 { background: linear-gradient(180deg, #f0fff4 0%, #ffffff 100%); }
+        .pagina-3 { background: linear-gradient(180deg, #fffaf0 0%, #ffffff 100%); }
+        .pagina-4 { background: linear-gradient(180deg, #f5f3ff 0%, #ffffff 100%); }
+        .pagina-5 { background: linear-gradient(180deg, #e6f7ff 0%, #ffffff 100%); }
+        
+        .cabecalho {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 4px solid;
+        }
+        
+        .pagina-1 .cabecalho { border-color: #e53e3e; }
+        .pagina-2 .cabecalho { border-color: #38a169; }
+        .pagina-3 .cabecalho { border-color: #dd6b20; }
+        .pagina-4 .cabecalho { border-color: #805ad5; }
+        .pagina-5 .cabecalho { border-color: #1890ff; }
+        
+        h1 {
+            font-size: 2.2em;
+            color: #2d3748;
+            margin-bottom: 10px;
+            font-weight: 800;
+            line-height: 1.2;
+        }
+        
+        h2 {
+            font-size: 1.6em;
+            color: #4a5568;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+        
+        .subtitulo {
+            font-size: 1.2em;
+            color: #718096;
+            font-weight: 600;
+        }
+        
+        .numero-pagina {
+            position: absolute;
+            bottom: 30px;
+            right: 40px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 1.3em;
+            color: white;
+        }
+        
+        .pagina-1 .numero-pagina { background: #e53e3e; }
+        .pagina-2 .numero-pagina { background: #38a169; }
+        .pagina-3 .numero-pagina { background: #dd6b20; }
+        .pagina-4 .numero-pagina { background: #805ad5; }
+        .pagina-5 .numero-pagina { background: #1890ff; }
+        
+        .ilustracao {
+            width: 100%;
+            max-width: 400px;
+            margin: 20px auto;
+            display: block;
+        }
+        
+        .icone-grande {
+            font-size: 5em;
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .caixa-destaque {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border-left: 6px solid;
+        }
+        
+        .pagina-1 .caixa-destaque { border-left-color: #e53e3e; }
+        .pagina-2 .caixa-destaque { border-left-color: #38a169; }
+        .pagina-3 .caixa-destaque { border-left-color: #dd6b20; }
+        .pagina-4 .caixa-destaque { border-left-color: #805ad5; }
+        .pagina-5 .caixa-destaque { border-left-color: #1890ff; }
+        
+        .caixa-destaque h3 {
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            color: #2d3748;
+        }
+        
+        .lista-simples {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .lista-simples li {
+            padding: 12px 0;
+            padding-left: 40px;
+            position: relative;
+            font-size: 1.1em;
+            line-height: 1.6;
+            color: #4a5568;
+        }
+        
+        .lista-simples li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            width: 30px;
+            height: 30px;
+            background: #48bb78;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        
+        .passos {
+            display: grid;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .passo {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .passo-numero {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #4299e1;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 1.2em;
+            flex-shrink: 0;
+        }
+        
+        .passo-texto {
+            flex: 1;
+        }
+        
+        .passo-texto strong {
+            display: block;
+            margin-bottom: 5px;
+            color: #2d3748;
+            font-size: 1.1em;
+        }
+        
+        .alerta {
+            background: #fed7d7;
+            border: 2px solid #e53e3e;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .alerta-titulo {
+            color: #c53030;
+            font-weight: 800;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .dica {
+            background: #c6f6d5;
+            border: 2px solid #38a169;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .dica-titulo {
+            color: #276749;
+            font-weight: 800;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+        
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .card-icone {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+        
+        .card-titulo {
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+        
+        .card-texto {
+            color: #718096;
+            font-size: 0.95em;
+            line-height: 1.5;
+        }
+        
+        .controles {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+            z-index: 100;
+        }
+        
+        .btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1em;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+        }
+        
+        .btn-anterior {
+            background: #cbd5e0;
+            color: #4a5568;
+        }
+        
+        .btn-proximo {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 12px rgba(0,0,0,0.25);
+        }
+        
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .indicadores {
+            display: flex;
+            gap: 10px;
+            position: fixed;
+            top: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 100;
+        }
+        
+        .indicador {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.5);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .indicador.ativo {
+            background: white;
+            transform: scale(1.3);
+        }
+        
+        .texto-grande {
+            font-size: 1.2em;
+            line-height: 1.8;
+            color: #4a5568;
+        }
+        
+        .destaque-cor {
+            font-weight: 800;
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+        
+        .cor-vermelha { background: #fed7d7; color: #c53030; }
+        .cor-verde { background: #c6f6d5; color: #276749; }
+        .cor-laranja { background: #feebc8; color: #c05621; }
+        .cor-roxa { background: #e9d8fd; color: #6b46c1; }
+        
+        @media print {
+            .controles, .indicadores { display: none; }
+            .pagina { 
+                display: block !important; 
+                page-break-after: always;
+                min-height: auto;
+            }
+            body { background: white; }
+            .cartilha-container { box-shadow: none; }
+        }
+        
+        @media (max-width: 600px) {
+            .pagina { padding: 20px; }
+            h1 { font-size: 1.6em; }
+            .grid-2 { grid-template-columns: 1fr; }
+            .btn { padding: 12px 20px; font-size: 1em; }
+        }
+        
+        .telefones {
+            background: #ebf8ff;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        .telefone {
+            font-size: 1.5em;
+            font-weight: 800;
+            color: #2b6cb0;
+            margin: 10px 0;
+        }
+        
+        .selo {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-weight: 700;
+            margin: 10px 0;
+        }
+        
+        /* Estilo para a grade de nomes na página 5 */
+        .grid-nomes {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 15px;
+        }
+        .nome-item {
+            background: #f0f7ff;
+            padding: 12px 8px;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: 600;
+            color: #2d3748;
+            border-left: 4px solid #1890ff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+    </style>
+<base target="_blank">
+</head>
+<body>
+    <div class="indicadores">
+        <div class="indicador ativo" onclick="irParaPagina(1)"></div>
+        <div class="indicador" onclick="irParaPagina(2)"></div>
+        <div class="indicador" onclick="irParaPagina(3)"></div>
+        <div class="indicador" onclick="irParaPagina(4)"></div>
+        <div class="indicador" onclick="irParaPagina(5)"></div> <!-- Novo indicador -->
+    </div>
+
+    <div class="cartilha-container">
+        <!-- PÁGINA 1: O QUE É SUPERENDIVIDAMENTO -->
+        <div class="pagina pagina-1 ativa">
+            <div class="cabecalho">
+                <div class="icone-grande">💰😰</div>
+                <h1>Será que estou superendividado?</h1>
+                <p class="subtitulo">Entenda de forma simples o que é superendividamento</p>
+            </div>
+
+            <div class="caixa-destaque">
+                <h3>🤔 O que é superendividamento?</h3>
+                <p class="texto-grande">
+                    É quando você <span class="destaque-cor cor-vermelha">não consegue pagar todas as suas dívidas</span> de consumo (cartão, empréstimo, carnês) <strong>sem deixar de pagar o básico para sobreviver</strong> (comida, remédio, aluguel, luz, água).
+                </p>
+            </div>
+
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-icone">📉</div>
+                    <div class="card-titulo">Perdeu o emprego?</div>
+                    <div class="card-texto">Redução de renda, doença, separação ou morte na família podem causar superendividamento</div>
+                </div>
+                <div class="card">
+                    <div class="card-icone">🔄</div>
+                    <div class="card-titulo">Pagar uma dívida com outra?</div>
+                    <div class="card-texto">Quando você pega empréstimo para pagar outra dívida, o problema pode estar aumentando</div>
+                </div>
+            </div>
+
+            <div class="alerta">
+                <div class="alerta-titulo">⚠️ ATENÇÃO!</div>
+                <p class="texto-grande">
+                    O superendividamento <strong>não é culpa sua</strong>! A lei protege você e exige que os bancos e lojas tenham responsabilidade na hora de oferecer crédito.
+                </p>
+            </div>
+
+            <div class="caixa-destaque">
+                <h3>✅ Você tem direito a:</h3>
+                <ul class="lista-simples">
+                    <li>Reorganizar suas dívidas em um plano de pagamento</li>
+                    <li>Ter seu nome limpo enquanto paga o combinado</li>
+                    <li>Preservar o mínimo para viver com dignidade</li>
+                    <li>Recomeçar sem ser excluído da sociedade</li>
+                </ul>
+            </div>
+
+            <div class="numero-pagina">1</div>
+        </div>
+
+        <!-- PÁGINA 2: COMO FUNCIONA O TRATAMENTO -->
+        <div class="pagina pagina-2">
+            <div class="cabecalho">
+                <div class="icone-grande">🤝✅</div>
+                <h1>Como sair das dívidas?</h1>
+                <p class="subtitulo">O tratamento tem duas fases para te ajudar</p>
+            </div>
+
+            <div class="dica">
+                <div class="dica-titulo">💡 Sabe o que é melhor?</div>
+                <p class="texto-grande">
+                    Você <strong>não precisa pagar advogado</strong>! Pode ir ao <span class="destaque-cor cor-verde">PROCON</span>, <span class="destaque-cor cor-verde">Defensoria Pública</span> ou <span class="destaque-cor cor-verde">CEJUSC</span> (Centro de Conciliação do Fórum) de graça!
+                </p>
+            </div>
+
+            <h2>🔄 Fase 1: Conciliação (tentar acordo)</h2>
+            
+            <div class="passos">
+                <div class="passo">
+                    <div class="passo-numero">1</div>
+                    <div class="passo-texto">
+                        <strong>Você pede ajuda</strong>
+                        Vai ao PROCON, Defensoria ou Fórum e pede para renegociar suas dívidas
+                    </div>
+                </div>
+                <div class="passo">
+                    <div class="passo-numero">2</div>
+                    <div class="passo-texto">
+                        <strong>Reúne todos os credores</strong>
+                        Eles chamam bancos, financeiras e lojas para uma reunião com você
+                    </div>
+                </div>
+                <div class="passo">
+                    <div class="passo-numero">3</div>
+                    <div class="passo-texto">
+                        <strong>Monta um plano de pagamento</strong>
+                        Com descontos, prazo de até 5 anos e parcelas que cabem no seu bolso
+                    </div>
+                </div>
+            </div>
+
+            <div class="caixa-destaque">
+                <h3>🎯 O que pode acontecer no acordo:</h3>
+                <ul class="lista-simples">
+                    <li>Redução dos juros e multas</li>
+                    <li>Mais tempo para pagar (até 5 anos)</li>
+                    <li>Seu nome sai do SPC/Serasa</li>
+                    <li>Processos em andamento são suspensos</li>
+                </ul>
+            </div>
+
+            <div class="alerta">
+                <div class="alerta-titulo">⚠️ Importante!</div>
+                <p>Se algum credor <strong>não comparecer</strong> sem justificativa, ele fica suspenso e só recebe depois dos que compareceram!</p>
+            </div>
+
+            <div class="numero-pagina">2</div>
+        </div>
+
+        <!-- PÁGINA 3: FASE JUDICIAL E DIREITOS -->
+        <div class="pagina pagina-3">
+            <div class="cabecalho">
+                <div class="icone-grande">⚖️📋</div>
+                <h1>E se não der acordo?</h1>
+                <p class="subtitulo">A Justiça pode ajudar na fase judicial</p>
+            </div>
+
+            <div class="caixa-destaque">
+                <h3>🏛️ Fase 2: Processo Judicial</h3>
+                <p class="texto-grande">
+                    Se algum credor não aceitar o acordo, você pode ir à Justiça. O juiz vai:
+                </p>
+            </div>
+
+            <div class="passos">
+                <div class="passo">
+                    <div class="passo-numero">1</div>
+                    <div class="passo-texto">
+                        <strong>Revisar seus contratos</strong>
+                        Verificar se houve cobrança abusiva, juros altos ou falta de informação
+                    </div>
+                </div>
+                <div class="passo">
+                    <div class="passo-numero">2</div>
+                    <div class="passo-texto">
+                        <strong>Reduzir abusos</strong>
+                        Se o banco não explicou direito ou cobrou taxas indevidas, pode reduzir a dívida
+                    </div>
+                </div>
+                <div class="passo">
+                    <div class="passo-numero">3</div>
+                    <div class="passo-texto">
+                        <strong>Plano compulsório</strong>
+                        O juiz estabelece quanto você paga, respeitando seu mínimo para viver
+                    </div>
+                </div>
+            </div>
+
+            <div class="dica">
+                <div class="dica-titulo">💡 O que é "mínimo existencial"?</div>
+                <p class="texto-grande">
+                    É o valor que <strong>ninguém pode tirar de você</strong> para pagar dívida. Hoje é <span class="destaque-cor cor-laranja">25% do salário mínimo</span> (cerca de R$ 330,00) para garantir comida, remédio e moradia.
+                </p>
+            </div>
+
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-icone">🚫</div>
+                    <div class="card-titulo">Não entra no plano:</div>
+                    <div class="card-texto">Financiamento de casa, dívida rural, pensão alimentícia e dívidas de impostos</div>
+                </div>
+                <div class="card">
+                    <div class="card-icone">⏰</div>
+                    <div class="card-titulo">Quando pedir de novo?</div>
+                    <div class="card-texto">Só depois de 2 anos que terminar de pagar o plano anterior</div>
+                </div>
+            </div>
+
+            <div class="alerta">
+                <div class="alerta-titulo">⚠️ Cuidado!</div>
+                <p>Durante o plano, <strong>não pode fazer novas dívidas</strong>! Isso quebra o acordo e você volta a ter o nome negativado.</p>
+            </div>
+
+            <div class="numero-pagina">3</div>
+        </div>
+
+        <!-- PÁGINA 4: ONDE BUSCAR AJUDA -->
+        <div class="pagina pagina-4">
+            <div class="cabecalho">
+                <div class="icone-grande">📞🆘</div>
+                <h1>Onde encontrar ajuda?</h1>
+                <p class="subtitulo">Serviços gratuitos para você</p>
+            </div>
+
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-icone">🏛️</div>
+                    <div class="card-titulo">PROCON</div>
+                    <div class="card-texto">Atendimento e conciliação gratuita. Leve seus documentos e comprovantes de renda</div>
+                </div>
+                <div class="card">
+                    <div class="card-icone">⚖️</div>
+                    <div class="card-titulo">Defensoria Pública</div>
+                    <div class="card-texto">Advogado gratuito se você não puder pagar. Vá com documentos de renda</div>
+                </div>
+                <div class="card">
+                    <div class="card-icone">🏫</div>
+                    <div class="card-titulo">Faculdades de Direito</div>
+                    <div class="card-texto">Clínicas jurídicas com atendimento gratuito em muitas cidades</div>
+                </div>
+                <div class="card">
+                    <div class="card-icone">🤝</div>
+                    <div class="card-titulo">CEJUSC</div>
+                    <div class="card-texto">Centro de Conciliação do Fórum. Mediação gratuita para resolver conflitos</div>
+                </div>
+            </div>
+
+            <div class="telefones">
+                <h3>📞 Telefones úteis:</h3>
+                <div class="telefone">151 - Defensoria Pública</div>
+                <div class="telefone">0800-078-2000 - PROCON Estadual</div>
+                <div style="color: #4a5568; margin-top: 10px;">Procure o PROCON do seu município</div>
+            </div>
+
+            <div class="caixa-destaque">
+                <h3>📋 Documentos para levar:</h3>
+                <ul class="lista-simples">
+                    <li>RG e CPF (cópia e original)</li>
+                    <li>Comprovante de residência</li>
+                    <li>Contratos de empréstimo/compras</li>
+                    <li>Comprovantes de renda (holerite, extrato)</li>
+                    <li>Contas de água, luz, aluguel</li>
+                    <li>Extratos dos bancos</li>
+                </ul>
+            </div>
+
+            <div class="dica">
+                <div class="dica-titulo">💡 Lembre-se:</div>
+                <p class="texto-grande">
+                    <span class="destaque-cor cor-roxa">Você não está sozinho!</span> O superendividamento é um problema social que atinge milhões de brasileiros. Existe lei para te proteger e instituições prontas para ajudar. <strong>Não tenha vergonha de pedir ajuda!</strong>
+                </p>
+            </div>
+
+            <div style="text-align: center; margin-top: 30px; padding: 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 15px; color: white;">
+                <div style="font-size: 1.3em; font-weight: 800; margin-bottom: 10px;">Você pode recomeçar! 💪</div>
+                <p>Com organização e ajuda, é possível sair do superendividamento e ter uma vida financeira saudável novamente.</p>
+            </div>
+
+            <div class="numero-pagina">4</div>
+        </div>
+
+        <!-- NOVA PÁGINA 5: INTEGRANTES DA ATIVIDADE INTEGRADORA -->
+        <div class="pagina pagina-5">
+            <div class="cabecalho">
+                <img src="logo01.png" alt="UnirG Logo" style="max-width: 200px; margin-bottom: 20px;">
+                <h1>Atividade Integradora</h1>
+                <p class="subtitulo">5º Período - Direito Noturno - UnirG</p>
+            </div>
+
+            <div class="caixa-destaque">
+                <h3>👥 Integrantes do Grupo</h3>
+                <div class="grid-nomes">
+                    <div class="nome-item">Bruno Aguiar Lima</div>
+                    <div class="nome-item">Breno Sousa Martins Dias</div>
+                    <div class="nome-item">Charles Batista dos Santos</div>
+                    <div class="nome-item">Fernando Bonfim</div>
+                    <div class="nome-item">Jacinto Pereira Santos</div>
+                    <div class="nome-item">Kauan da Silva Costa</div>
+                    <div class="nome-item">Lucas Targino de Sousa</div>
+                    <div class="nome-item">Odilon Fonseca Montel</div>
+                    <div class="nome-item">Sandrey Santos</div>
+                    <div class="nome-item">Vitor Augusto do Nascimento Amorim</div>
+                </div>
+            </div>
+
+            <div class="dica" style="text-align: center;">
+                <div class="dica-titulo">📘 Projeto de Extensão</div>
+                <p>Esta cartilha foi desenvolvida como parte da atividade integradora do 5º período de Direito, com o objetivo de informar e orientar a comunidade sobre o superendividamento e os direitos do consumidor.</p>
+            </div>
+
+            <div class="numero-pagina">5</div>
+        </div>
+    </div>
+
+    <div class="controles">
+        <button class="btn btn-anterior" onclick="paginaAnterior()" id="btnAnterior">← Anterior</button>
+        <button class="btn btn-proximo" onclick="proximaPagina()" id="btnProximo">Próximo →</button>
+    </div>
+
+    <script>
+        let paginaAtual = 1;
+        const totalPaginas = 5; // Atualizado para 5
+
+        function atualizarPagina() {
+            document.querySelectorAll('.pagina').forEach((pagina, index) => {
+                pagina.classList.toggle('ativa', index + 1 === paginaAtual);
+            });
+            
+            document.querySelectorAll('.indicador').forEach((ind, index) => {
+                ind.classList.toggle('ativo', index + 1 === paginaAtual);
+            });
+            
+            document.getElementById('btnAnterior').disabled = paginaAtual === 1;
+            document.getElementById('btnProximo').disabled = paginaAtual === totalPaginas;
+            
+            if (paginaAtual === totalPaginas) {
+                document.getElementById('btnProximo').textContent = '✓ Concluir';
+            } else {
+                document.getElementById('btnProximo').textContent = 'Próximo →';
+            }
+        }
+
+        function proximaPagina() {
+            if (paginaAtual < totalPaginas) {
+                paginaAtual++;
+                atualizarPagina();
+            }
+        }
+
+        function paginaAnterior() {
+            if (paginaAtual > 1) {
+                paginaAtual--;
+                atualizarPagina();
+            }
+        }
+
+        function irParaPagina(numero) {
+            paginaAtual = numero;
+            atualizarPagina();
+        }
+
+        // Navegação por teclado
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') proximaPagina();
+            if (e.key === 'ArrowLeft') paginaAnterior();
+        });
+
+        atualizarPagina();
+    </script>
+</body>
+</html>
