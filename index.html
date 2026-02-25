@@ -50,7 +50,8 @@
         .pagina-2 { background: linear-gradient(180deg, #f0fff4 0%, #ffffff 100%); }
         .pagina-3 { background: linear-gradient(180deg, #fffaf0 0%, #ffffff 100%); }
         .pagina-4 { background: linear-gradient(180deg, #f5f3ff 0%, #ffffff 100%); }
-        .pagina-5 { background: linear-gradient(180deg, #e6f7ff 0%, #ffffff 100%); }
+        .pagina-5 { background: linear-gradient(180deg, #fff9e6 0%, #ffffff 100%); } /* Quiz - amarelo */
+        .pagina-6 { background: linear-gradient(180deg, #e6f7ff 0%, #ffffff 100%); } /* Equipe - azul */
         
         .cabecalho {
             text-align: center;
@@ -63,7 +64,8 @@
         .pagina-2 .cabecalho { border-color: #38a169; }
         .pagina-3 .cabecalho { border-color: #dd6b20; }
         .pagina-4 .cabecalho { border-color: #805ad5; }
-        .pagina-5 .cabecalho { border-color: #1890ff; }
+        .pagina-5 .cabecalho { border-color: #fbbf24; } /* Quiz */
+        .pagina-6 .cabecalho { border-color: #1890ff; } /* Equipe */
         
         h1 {
             font-size: 2.2em;
@@ -105,14 +107,8 @@
         .pagina-2 .numero-pagina { background: #38a169; }
         .pagina-3 .numero-pagina { background: #dd6b20; }
         .pagina-4 .numero-pagina { background: #805ad5; }
-        .pagina-5 .numero-pagina { background: #1890ff; }
-        
-        .ilustracao {
-            width: 100%;
-            max-width: 400px;
-            margin: 20px auto;
-            display: block;
-        }
+        .pagina-5 .numero-pagina { background: #fbbf24; } /* Quiz */
+        .pagina-6 .numero-pagina { background: #1890ff; } /* Equipe */
         
         .icone-grande {
             font-size: 5em;
@@ -133,7 +129,8 @@
         .pagina-2 .caixa-destaque { border-left-color: #38a169; }
         .pagina-3 .caixa-destaque { border-left-color: #dd6b20; }
         .pagina-4 .caixa-destaque { border-left-color: #805ad5; }
-        .pagina-5 .caixa-destaque { border-left-color: #1890ff; }
+        .pagina-5 .caixa-destaque { border-left-color: #fbbf24; } /* Quiz */
+        .pagina-6 .caixa-destaque { border-left-color: #1890ff; } /* Equipe */
         
         .caixa-destaque h3 {
             font-size: 1.3em;
@@ -403,7 +400,7 @@
             margin: 10px 0;
         }
         
-        /* Estilo para a grade de nomes na página 5 */
+        /* Estilo para a grade de nomes (página 6 - equipe) */
         .grid-nomes {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -420,6 +417,61 @@
             border-left: 4px solid #1890ff;
             box-shadow: 0 2px 4px rgba(0,0,0,0.05);
         }
+        
+        /* Estilo para o quiz (página 5) */
+        .quiz-item {
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 12px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+        .quiz-item input[type="checkbox"] {
+            width: 22px;
+            height: 22px;
+            margin-top: 3px;
+            cursor: pointer;
+            accent-color: #fbbf24;
+        }
+        .quiz-item label {
+            font-size: 1.1em;
+            color: #4a5568;
+            line-height: 1.5;
+            cursor: pointer;
+            flex: 1;
+        }
+        .btn-quiz {
+            background: #fbbf24;
+            color: #2d3748;
+            border: none;
+            border-radius: 50px;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin: 20px 0;
+            width: 100%;
+        }
+        .btn-quiz:hover {
+            background: #f59e0b;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 12px rgba(0,0,0,0.2);
+        }
+        .resultado-quiz {
+            background: #fef9e7;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 6px solid #fbbf24;
+            font-size: 1.2em;
+            line-height: 1.8;
+            color: #2d3748;
+        }
     </style>
 <base target="_blank">
 </head>
@@ -429,7 +481,8 @@
         <div class="indicador" onclick="irParaPagina(2)"></div>
         <div class="indicador" onclick="irParaPagina(3)"></div>
         <div class="indicador" onclick="irParaPagina(4)"></div>
-        <div class="indicador" onclick="irParaPagina(5)"></div>
+        <div class="indicador" onclick="irParaPagina(5)"></div> <!-- Quiz -->
+        <div class="indicador" onclick="irParaPagina(6)"></div> <!-- Equipe -->
     </div>
 
     <div class="cartilha-container">
@@ -582,7 +635,7 @@
             <div class="dica">
                 <div class="dica-titulo">💡 O que é "mínimo existencial"?</div>
                 <p class="texto-grande">
-                    É o valor que <strong>ninguém pode tirar de você</strong> para pagar dívida. Hoje é <span class="destaque-cor cor-laranja">25% do salário mínimo</span> (pelo menos R$ 405,25) para garantir comida, remédio e moradia.
+                    É o valor que <strong>ninguém pode tirar de você</strong> para pagar dívida. Hoje é <span class="destaque-cor cor-laranja">25% do salário mínimo</span> (cerca de R$ 405,25) para garantir comida, remédio e moradia.
                 </p>
             </div>
 
@@ -672,8 +725,65 @@
             <div class="numero-pagina">4</div>
         </div>
 
-        <!-- PÁGINA 5: INTEGRANTES DA ATIVIDADE INTEGRADORA -->
+        <!-- PÁGINA 5: QUIZ -->
         <div class="pagina pagina-5">
+            <div class="cabecalho">
+                <div class="icone-grande">📋❓</div>
+                <h1>Quiz: Você está em risco de superendividamento?</h1>
+                <p class="subtitulo">Marque as afirmações que se aplicam a você</p>
+            </div>
+
+            <div class="caixa-destaque">
+                <h3>🔍 Responda com sinceridade:</h3>
+                <div id="quiz-lista">
+                    <div class="quiz-item">
+                        <input type="checkbox" id="q1">
+                        <label for="q1">Minhas dívidas equivalem a mais de 50% do que ganho.</label>
+                    </div>
+                    <div class="quiz-item">
+                        <input type="checkbox" id="q2">
+                        <label for="q2">Preciso trabalhar mais para pagar minhas dívidas no final do mês.</label>
+                    </div>
+                    <div class="quiz-item">
+                        <input type="checkbox" id="q3">
+                        <label for="q3">Meu salário acaba antes do final do mês.</label>
+                    </div>
+                    <div class="quiz-item">
+                        <input type="checkbox" id="q4">
+                        <label for="q4">Minhas dívidas estão sendo causa de desavença familiar.</label>
+                    </div>
+                    <div class="quiz-item">
+                        <input type="checkbox" id="q5">
+                        <label for="q5">Não consigo pagar em dia as contas de luz, água, alimentação, aluguel e/ou condomínio.</label>
+                    </div>
+                    <div class="quiz-item">
+                        <input type="checkbox" id="q6">
+                        <label for="q6">Meu nome está negativado em cadastro, tais como SPC, Serasa, CCF.</label>
+                    </div>
+                    <div class="quiz-item">
+                        <input type="checkbox" id="q7">
+                        <label for="q7">Tenho atrasado o pagamento das minhas obrigações.</label>
+                    </div>
+                    <div class="quiz-item">
+                        <input type="checkbox" id="q8">
+                        <label for="q8">Já pedi dinheiro emprestado a um familiar ou a algum amigo para pagar minhas obrigações.</label>
+                    </div>
+                    <div class="quiz-item">
+                        <input type="checkbox" id="q9">
+                        <label for="q9">Minha família não tem conhecimento de minhas dificuldades.</label>
+                    </div>
+                </div>
+
+                <button class="btn-quiz" onclick="calcularQuiz()">Ver resultado</button>
+
+                <div id="resultado-quiz" class="resultado-quiz" style="display: none;"></div>
+            </div>
+
+            <div class="numero-pagina">5</div>
+        </div>
+
+        <!-- PÁGINA 6: INTEGRANTES DA ATIVIDADE INTEGRADORA -->
+        <div class="pagina pagina-6">
             <div class="cabecalho">
                 <img src="logo01.png" alt="UnirG Logo" style="max-width: 200px; margin-bottom: 20px;">
                 <h1>Atividade Integradora</h1>
@@ -701,7 +811,7 @@
                 <p>Esta cartilha foi desenvolvida como parte da atividade integradora do 5º período de Direito, com o objetivo de informar e orientar a comunidade sobre o superendividamento e os direitos do consumidor.</p>
             </div>
 
-            <div class="numero-pagina">5</div>
+            <div class="numero-pagina">6</div>
         </div>
     </div>
 
@@ -712,7 +822,7 @@
 
     <script>
         let paginaAtual = 1;
-        const totalPaginas = 5;
+        const totalPaginas = 6;
 
         function atualizarPagina() {
             document.querySelectorAll('.pagina').forEach((pagina, index) => {
@@ -732,7 +842,6 @@
                 document.getElementById('btnProximo').textContent = 'Próximo →';
             }
 
-            // Rola suavemente para o topo da página
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
@@ -753,6 +862,27 @@
         function irParaPagina(numero) {
             paginaAtual = numero;
             atualizarPagina();
+        }
+
+        // Função do quiz
+        function calcularQuiz() {
+            const checkboxes = document.querySelectorAll('#quiz-lista input[type="checkbox"]');
+            let marcados = 0;
+            checkboxes.forEach(cb => {
+                if (cb.checked) marcados++;
+            });
+
+            const resultadoDiv = document.getElementById('resultado-quiz');
+            let mensagem = '';
+
+            if (marcados <= 2) {
+                mensagem = '✅ Parabéns! Você marcou ' + marcados + ' item(ns). Sua situação parece controlada, mas continue acompanhando suas finanças.';
+            } else {
+                mensagem = '⚠️ Atenção! Você marcou ' + marcados + ' item(ns). Isso indica que você pode estar em risco de superendividamento. Considere buscar orientação financeira com um dos órgãos listados na página 4.';
+            }
+
+            resultadoDiv.style.display = 'block';
+            resultadoDiv.innerHTML = '<strong>Resultado:</strong> ' + mensagem;
         }
 
         // Navegação por teclado
