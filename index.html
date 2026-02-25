@@ -429,7 +429,7 @@
         <div class="indicador" onclick="irParaPagina(2)"></div>
         <div class="indicador" onclick="irParaPagina(3)"></div>
         <div class="indicador" onclick="irParaPagina(4)"></div>
-        <div class="indicador" onclick="irParaPagina(5)"></div> <!-- Novo indicador -->
+        <div class="indicador" onclick="irParaPagina(5)"></div>
     </div>
 
     <div class="cartilha-container">
@@ -672,7 +672,7 @@
             <div class="numero-pagina">4</div>
         </div>
 
-        <!-- NOVA PÁGINA 5: INTEGRANTES DA ATIVIDADE INTEGRADORA -->
+        <!-- PÁGINA 5: INTEGRANTES DA ATIVIDADE INTEGRADORA -->
         <div class="pagina pagina-5">
             <div class="cabecalho">
                 <img src="logo01.png" alt="UnirG Logo" style="max-width: 200px; margin-bottom: 20px;">
@@ -712,7 +712,7 @@
 
     <script>
         let paginaAtual = 1;
-        const totalPaginas = 5; // Atualizado para 5
+        const totalPaginas = 5;
 
         function atualizarPagina() {
             document.querySelectorAll('.pagina').forEach((pagina, index) => {
@@ -731,6 +731,9 @@
             } else {
                 document.getElementById('btnProximo').textContent = 'Próximo →';
             }
+
+            // Rola suavemente para o topo da página
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
         function proximaPagina() {
