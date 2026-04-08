@@ -817,6 +817,24 @@
                 <img src="https://api.visitorbadge.io/api/visitors?path=cartilha-superendividamento-unirg&countColor=%231890ff&label=visitas" alt="Contador de visitas" style="max-width: 200px;">
             </div>
 
+            <!-- RESUMO DE TESTES -->
+            <div id="resumo-testes" style="margin-top: 18px; padding: 10px 18px; background: #f8f9fa; border: 1px solid #e0e0e0; border-radius: 10px;">
+                <div style="display: flex; justify-content: center; gap: 28px; flex-wrap: wrap;">
+                    <div style="text-align: center;">
+                        <div style="font-size: 0.75em; color: #999;">NTR</div>
+                        <div style="font-size: 1.4em; font-weight: 800; color: #5c6bc0;" id="ntr-valor">0</div>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="font-size: 0.75em; color: #999;">NTP</div>
+                        <div style="font-size: 1.4em; font-weight: 800; color: #ef5350;" id="ntp-valor">0</div>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="font-size: 0.75em; color: #999;">NTN</div>
+                        <div style="font-size: 1.4em; font-weight: 800; color: #66bb6a;" id="ntn-valor">0</div>
+                    </div>
+                </div>
+            </div>
+
             <div class="numero-pagina">6</div>
         </div>
     </div>
@@ -870,6 +888,27 @@
             atualizarPagina();
         }
 
+        // Contadores de testes
+        function carregarContadores() {
+            const ntr = parseInt(localStorage.getItem('ntr') || '0');
+            const ntp = parseInt(localStorage.getItem('ntp') || '0');
+            const ntn = parseInt(localStorage.getItem('ntn') || '0');
+            document.getElementById('ntr-valor').textContent = ntr;
+            document.getElementById('ntp-valor').textContent = ntp;
+            document.getElementById('ntn-valor').textContent = ntn;
+        }
+
+        function registrarTeste(positivo) {
+            let ntr = parseInt(localStorage.getItem('ntr') || '0') + 1;
+            let ntp = parseInt(localStorage.getItem('ntp') || '0');
+            let ntn = parseInt(localStorage.getItem('ntn') || '0');
+            if (positivo) { ntp++; } else { ntn++; }
+            localStorage.setItem('ntr', ntr);
+            localStorage.setItem('ntp', ntp);
+            localStorage.setItem('ntn', ntn);
+            carregarContadores();
+        }
+
         // Função do quiz
         function calcularQuiz() {
             const checkboxes = document.querySelectorAll('#quiz-lista input[type="checkbox"]');
@@ -880,8 +919,9 @@
 
             const resultadoDiv = document.getElementById('resultado-quiz');
             let mensagem = '';
+            const positivo = marcados > 2;
 
-            if (marcados <= 2) {
+            if (!positivo) {
                 mensagem = '✅ Parabéns! Você marcou ' + marcados + ' item(ns). Sua situação parece controlada, mas continue acompanhando suas finanças.';
             } else {
                 mensagem = '⚠️ Atenção! Você marcou ' + marcados + ' item(ns). Isso indica que você pode estar em risco de superendividamento. Considere buscar orientação financeira com um dos órgãos listados na página 4.';
@@ -889,6 +929,8 @@
 
             resultadoDiv.style.display = 'block';
             resultadoDiv.innerHTML = '<strong>Resultado:</strong> ' + mensagem;
+
+            registrarTeste(positivo);
         }
 
         // Navegação por teclado
@@ -898,6 +940,7 @@
         });
 
         atualizarPagina();
+        carregarContadores();
     </script>
 </body>
 </html>
